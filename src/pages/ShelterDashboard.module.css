@@ -1,0 +1,273 @@
+.dashboardBg {
+  min-height: 100vh;
+  width: 100vw;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #232526 0%, #414345 100%);
+  transition: background 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-snap-type: y mandatory;
+}
+.dark {
+  background: linear-gradient(135deg, #232526 0%, #414345 100%);
+  color: #fff;
+}
+.light {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2eafc 100%);
+  color: #222;
+}
+.toggleWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 2rem 0 0;
+}
+.toggleBtn {
+  background: linear-gradient(90deg, #ffecd2 0%, #fcb69f 100%);
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.3s, color 0.3s;
+}
+.toggleBtn:hover {
+  background: linear-gradient(90deg, #fcb69f 0%, #ffecd2 100%);
+  color: #232526;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.header {
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.title {
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  letter-spacing: 1px;
+}
+.subtitle {
+  color: #b0b0b0;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.statCard {
+  background: rgba(255,255,255,0.08);
+  border-radius: 2rem;
+  box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, #0d6efd, #dc3545, #ffc107, #20c997) 1;
+  backdrop-filter: blur(10px);
+  padding: 2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.statCard:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0px 16px 40px rgba(0,0,0,0.25);
+  border-image: linear-gradient(135deg, #ffc107, #0d6efd, #20c997, #dc3545) 1;
+}
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.iconPill {
+  font-size: 2.2rem;
+  border-radius: 999px;
+  padding: 0.7rem 1.2rem;
+  margin-bottom: 0.7rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255,255,255,0.18);
+  background: linear-gradient(135deg, #0d6efd 0%, #20c997 100%);
+  transition: background 0.3s;
+}
+.statLabel {
+  color: #e2eafc;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+.statValue {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.statChange {
+  margin-top: 0.5rem;
+  background: linear-gradient(90deg, #20c997 0%, #ffc107 100%);
+  color: #232526;
+  border-radius: 999px;
+  padding: 0.2rem 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+.quickGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.quickCard {
+  background: rgba(255,255,255,0.10);
+  border-radius: 2rem;
+  box-shadow: 0px 10px 25px rgba(0,0,0,0.18);
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, #6f42c1, #fd7e14, #198754, #20c997) 1;
+  backdrop-filter: blur(10px);
+  padding: 2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.quickCard:hover {
+  transform: scale(1.05) rotateY(8deg);
+  box-shadow: 0px 16px 40px rgba(0,0,0,0.22);
+  border-image: linear-gradient(135deg, #fd7e14, #6f42c1, #20c997, #198754) 1;
+}
+.quickTitle {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+.quickDesc {
+  color: #e2eafc;
+  font-size: 1rem;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.accordionSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  scroll-snap-align: start;
+}
+.accordionCard {
+  background: rgba(255,255,255,0.13);
+  border-radius: 2rem;
+  box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, #0d6efd, #fd7e14, #ffc107, #20c997) 1;
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 1.2rem;
+  transition: box-shadow 0.3s, border 0.3s;
+  overflow: hidden;
+}
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 1rem;
+}
+.accordionTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+.accordionIcon {
+  font-size: 1.2rem;
+  color: #ffc107;
+  margin-left: 0.5rem;
+}
+.listGroup {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.listItem {
+  background: rgba(255,255,255,0.10);
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 0.8rem 1.2rem;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.listItem:hover {
+  background: rgba(255,255,255,0.18);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+.listLink {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.listContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.petName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+}
+.petBreed {
+  font-size: 0.95rem;
+  color: #e2eafc;
+}
+.statusBadge {
+  background: linear-gradient(90deg, #0d6efd 0%, #20c997 100%);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.3rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+.requestBadge {
+  background: linear-gradient(90deg, #ffc107 0%, #fd7e14 100%);
+  color: #232526;
+}
+@media (max-width: 900px) {
+  .container {
+    padding: 1rem 0.2rem;
+  }
+  .statsGrid, .quickGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .accordionSection {
+    gap: 1rem;
+  }
+} 

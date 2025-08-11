@@ -1,0 +1,340 @@
+/* Stray Pet Report Page CSS - White Color Scheme */
+.stray-pet-report-container {
+  min-height: 100vh;
+  background: #F8F9FA;
+  padding: 2rem;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Pattern */
+.stray-pet-report-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(44, 62, 80, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(244, 185, 66, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(108, 117, 125, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Header Section */
+.stray-pet-report-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.stray-pet-report-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: inline-block;
+}
+
+.stray-pet-report-title::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(circle, rgba(244, 185, 66, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: titlePulse 3s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes titlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.stray-pet-report-subtitle {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.4rem;
+  color: #6C757D;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(108, 117, 125, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: subtitleFloat 4s ease-in-out infinite;
+}
+
+@keyframes subtitleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.pet-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.pet-icon {
+  font-size: 2rem;
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+.pet-icon:nth-child(1) { animation-delay: 0s; }
+.pet-icon:nth-child(2) { animation-delay: 0.5s; }
+.pet-icon:nth-child(3) { animation-delay: 1s; }
+.pet-icon:nth-child(4) { animation-delay: 1.5s; }
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Form Card */
+.stray-pet-report-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(108, 117, 125, 0.1);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+}
+
+/* Form Labels */
+.form-label-stray {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Form Controls */
+.form-control-stray,
+.form-select-stray {
+  border-radius: 12px;
+  border: 2px solid #DED3C4;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #FFFFFF;
+  color: #2C3E50;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.form-control-stray:focus,
+.form-select-stray:focus {
+  outline: none;
+  border-color: #F4B942;
+  box-shadow: 0 0 0 3px rgba(244, 185, 66, 0.2);
+  background: #FFFFFF;
+}
+
+.form-control-stray::placeholder {
+  color: #6C757D;
+}
+
+/* Photo Preview */
+.photo-preview-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.photo-preview {
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 16px;
+  border: 3px solid #DED3C4;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.photo-preview:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Buttons */
+.btn-cancel {
+  background: transparent;
+  color: #2C3E50;
+  border: 2px solid #2C3E50;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-right: 1rem;
+}
+
+.btn-cancel:hover {
+  background: #2C3E50;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(44, 62, 80, 0.3);
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+  color: #FFFFFF;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(85, 88, 121, 0.3);
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(44, 62, 80, 0.4);
+  color: #FFFFFF;
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Form Help Text */
+.form-help-text {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.875rem;
+  color: #6C757D;
+  margin-top: 0.25rem;
+}
+
+/* Required Field Indicator */
+.required-field {
+  color: #dc3545;
+  margin-left: 0.25rem;
+}
+
+/* Loading State */
+.loading-container {
+  min-height: 100vh;
+  background: #F8F9FA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-spinner {
+  color: #2C3E50;
+}
+
+.loading-text {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.1rem;
+  color: #2C3E50;
+  margin-top: 1rem;
+}
+
+/* Success/Error Messages */
+.alert-stray {
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: #F4EBD3;
+  border: none;
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+  color: #F4EBD3;
+  border: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stray-pet-report-container {
+    padding: 1rem;
+  }
+  
+  .stray-pet-report-title {
+    font-size: 3rem;
+  }
+  
+  .stray-pet-report-subtitle {
+    font-size: 1.2rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  .stray-pet-report-card {
+    padding: 2rem;
+  }
+  
+  .pet-icons {
+    gap: 0.5rem;
+  }
+  
+  .pet-icon {
+    font-size: 1.5rem;
+  }
+  
+  .btn-cancel,
+  .btn-submit {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .stray-pet-report-title {
+    font-size: 2.5rem;
+  }
+  
+  .stray-pet-report-card {
+    padding: 1.5rem;
+  }
+  
+  .photo-preview {
+    max-width: 250px;
+    max-height: 250px;
+  }
+} 

@@ -1,0 +1,456 @@
+/* Manage Shelters CSS - Homepage Color Scheme */
+
+.manage-shelters-container {
+  min-height: 100vh;
+  width: 100vw;
+  background: #ffffff;
+  padding: 2rem;
+  box-sizing: border-box;
+  position: relative;
+  overflow-x: auto;
+}
+
+/* Remove animated/effect backgrounds */
+.manage-shelters-container::before,
+.manage-shelters-container::after,
+.manage-shelters-content::before,
+.manage-shelters-content::after {
+  display: none !important;
+  content: none !important;
+}
+
+.manage-shelters-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header Section */
+.shelters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.shelters-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin-bottom: 0.5rem;
+  text-shadow: none;
+}
+
+.shelters-subtitle {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.1rem;
+  color: #6C757D;
+  font-weight: 400;
+  margin: 0;
+}
+
+.back-dashboard-btn {
+  background: #2C3E50;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
+}
+
+.back-dashboard-btn:hover {
+  background: #34495E;
+  color: #ffffff;
+}
+
+/* Stats Container */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card.total {
+  border-left: 4px solid #2C3E50;
+}
+
+.stat-card.active {
+  border-left: 4px solid #6C757D;
+}
+
+.stat-card.inactive {
+  border-left: 4px solid #e9ecef;
+}
+
+.stat-card.approved {
+  border-left: 4px solid #2C3E50;
+}
+
+.stat-number {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: #6C757D;
+  font-weight: 500;
+}
+
+/* Main Card */
+.shelters-main-card {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.shelters-main-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.shelters-card-header {
+  margin-bottom: 2rem;
+}
+
+.shelters-card-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 0.5rem;
+}
+
+/* Table Styling */
+.shelters-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.shelters-table thead th {
+  background: #2C3E50;
+  color: #ffffff;
+  padding: 1rem;
+  text-align: left;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  border-radius: 8px 8px 0 0;
+}
+
+.shelters-table tbody tr {
+  border-bottom: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+  background-color: #2C3E50;
+}
+
+.shelters-table tbody tr:hover {
+  background: rgba(44, 62, 80, 0.8);
+}
+
+.shelters-table tbody td {
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+}
+
+.shelter-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #2C3E50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+}
+
+.shelter-avatar:hover {
+  background: #34495E;
+}
+
+.shelter-info {
+  display: flex;
+  align-items: center;
+}
+
+.shelter-name {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.shelter-username {
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin-top: 0.25rem;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.status-badge.active {
+  background: #28A745;
+  color: #ffffff;
+}
+
+.status-badge.inactive {
+  background: #6C757D;
+  color: #ffffff;
+}
+
+.status-badge.approved {
+  background: #2C3E50;
+  color: #ffffff;
+}
+
+.status-badge.pending {
+  background: #FFC107;
+  color: #2C3E50;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.action-btn.view {
+  background: #2C3E50;
+  color: #ffffff;
+}
+
+.action-btn.edit {
+  background: #FFC107;
+  color: #2C3E50;
+}
+
+.action-btn.toggle {
+  background: #28A745;
+  color: #ffffff;
+}
+
+.action-btn.delete {
+  background: #DC3545;
+  color: #ffffff;
+}
+
+.action-btn:hover {
+  opacity: 0.8;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #555879;
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #98A1BC;
+}
+
+.empty-state-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #555879;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state-message {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: #555879;
+  margin-bottom: 1.5rem;
+}
+
+.refresh-btn {
+  background: linear-gradient(135deg, #555879 0%, #98A1BC 100%);
+  color: #F4EBD3;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(85, 88, 121, 0.3);
+}
+
+.refresh-btn:hover {
+  /* Removed transform and box-shadow effects */
+  color: #F4EBD3;
+}
+
+/* Loading State */
+.loading-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #F4EBD3 0%, #DED3C4 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-spinner {
+  color: #555879;
+}
+
+/* Error State */
+.error-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #F4EBD3 0%, #DED3C4 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.error-card {
+  background: linear-gradient(135deg, #F4EBD3 0%, #DED3C4 100%);
+  border: 1px solid rgba(85, 88, 121, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.error-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #555879;
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: #555879;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .manage-shelters-container {
+    padding: 1rem;
+  }
+  
+  .shelters-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .shelters-title {
+    font-size: 2rem;
+  }
+  
+  .stats-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  
+  .stat-card {
+    padding: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .shelters-table {
+    font-size: 0.9rem;
+  }
+  
+  .shelters-table thead th,
+  .shelters-table tbody td {
+    padding: 0.5rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .action-btn {
+    width: 100%;
+    margin: 0.25rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .shelters-title {
+    font-size: 1.8rem;
+  }
+  
+  .shelters-subtitle {
+    font-size: 1rem;
+  }
+  
+  .shelters-main-card {
+    padding: 1rem;
+  }
+  
+  .shelters-table {
+    font-size: 0.8rem;
+  }
+  
+  .shelter-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+} 

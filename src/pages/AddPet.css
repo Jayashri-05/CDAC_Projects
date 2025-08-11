@@ -1,0 +1,281 @@
+/* Add Pet Page CSS - Homepage Color Scheme */
+.add-pet-container {
+  min-height: 100vh;
+  background: #ffffff;
+  padding: 2rem;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Pattern */
+.add-pet-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(44, 62, 80, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(108, 117, 125, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(233, 236, 239, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Header Section */
+.add-pet-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.add-pet-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin-bottom: 1.5rem;
+  text-shadow: none;
+  position: relative;
+  display: inline-block;
+}
+
+.add-pet-title::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(circle, rgba(44, 62, 80, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: titlePulse 3s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes titlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.add-pet-subtitle {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.4rem;
+  color: #6C757D;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  animation: subtitleFloat 4s ease-in-out infinite;
+}
+
+@keyframes subtitleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+
+
+/* Form Card */
+.add-pet-card {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+}
+
+/* Form Labels */
+.form-label-add-pet {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Form Controls */
+.form-control-add-pet,
+.form-select-add-pet {
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #ffffff;
+  color: #2C3E50;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.form-control-add-pet:focus,
+.form-select-add-pet:focus {
+  outline: none;
+  border-color: #2C3E50;
+  box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+  background: #ffffff;
+}
+
+.form-control-add-pet::placeholder {
+  color: #6C757D;
+}
+
+/* Photo Preview */
+.photo-preview-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.photo-preview {
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 16px;
+  border: 3px solid #e9ecef;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.photo-preview:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Buttons */
+.btn-cancel {
+  background: transparent;
+  color: #2C3E50;
+  border: 2px solid #2C3E50;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-right: 1rem;
+}
+
+.btn-cancel:hover {
+  background: #2C3E50;
+  color: #ffffff;
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, #F4B942 0%, #E6A532 100%);
+  color: #2C3E50;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(244, 185, 66, 0.3);
+}
+
+.btn-submit:hover {
+  background: linear-gradient(135deg, #E6A532 0%, #F4B942 100%);
+  color: #2C3E50;
+  box-shadow: 0 6px 20px rgba(244, 185, 66, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Form Help Text */
+.form-help-text {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.875rem;
+  color: #6C757D;
+  margin-top: 0.25rem;
+}
+
+/* Required Field Indicator */
+.required-field {
+  color: #DC3545;
+  margin-left: 0.25rem;
+}
+
+/* Alert Messages */
+.alert-add-pet {
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+}
+
+.alert-danger {
+  background: #DC3545;
+  color: #ffffff;
+  border: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .add-pet-container {
+    padding: 1rem;
+  }
+  
+  .add-pet-title {
+    font-size: 3rem;
+  }
+  
+  .add-pet-subtitle {
+    font-size: 1.2rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  .add-pet-card {
+    padding: 2rem;
+  }
+  
+  .btn-cancel,
+  .btn-submit {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-pet-title {
+    font-size: 2.5rem;
+  }
+  
+  .add-pet-card {
+    padding: 1.5rem;
+  }
+  
+  .photo-preview {
+    max-width: 250px;
+    max-height: 250px;
+  }
+} 
