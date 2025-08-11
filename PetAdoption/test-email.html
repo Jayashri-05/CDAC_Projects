@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Test - Pet Adoption Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e1e5e9;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        .loading {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+
+        .config-info {
+            background: #f8f9fa;
+            border: 1px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .config-info h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .config-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .config-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .config-value {
+            color: #333;
+            font-family: monospace;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-online {
+            background: #28a745;
+        }
+
+        .status-offline {
+            background: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐾 Email Test</h1>
+            <p>Pet Adoption Platform - Email Configuration Testing</p>
+        </div>
+
+        <div class="config-info">
+            <h3>📧 Email Configuration</h3>
+            <div id="configInfo">Loading configuration...</div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Test Email Address:</label>
+            <input type="email" id="email" placeholder="Enter email to test" value="adoptocare11@gmail.com">
+        </div>
+
+        <div class="button-group">
+            <button onclick="checkConfig()" class="btn-secondary">🔧 Check Config</button>
+            <button onclick="testEmail()" class="btn-primary" id="testBtn">📧 Send Test Email</button>
+        </div>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // Check email configuration on page load
+        window.onload = function() {
+            checkConfig();
+        };
+
+        async function checkConfig() {
+            const configInfo = document.getElementById('configInfo');
+            configInfo.innerHTML = '<span class="status-indicator status-offline"></span>Checking configuration...';
+            
+            try {
+                const response = await fetch('http://localhost:8080/api/test/email-config');
+                const data = await response.json();
+                
+                configInfo.innerHTML = `
+                    <span class="status-indicator status-online"></span>Configuration loaded successfully
+                    <div class="config-item">
+                        <span class="config-label">Username:</span>
+                        <span class="config-value">${data.username}</span>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Password Length:</span>
+                        <span class="config-value">${data.passwordLength} characters</span>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Host:</span>
+                        <span class="config-value">${data.host}</span>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Port:</span>
+                        <span class="config-value">${data.port}</span>
+                    </div>
+                `;
+            } catch (error) {
+                configInfo.innerHTML = `
+                    <span class="status-indicator status-offline"></span>Failed to load configuration
+                    <div style="color: #dc3545; margin-top: 10px; font-size: 12px;">
+                        Error: ${error.message}<br>
+                        Make sure your Spring Boot application is running on port 8080
+                    </div>
+                `;
+            }
+        }
+
+        async function testEmail() {
+            const email = document.getElementById('email').value;
+            const button = document.getElementById('testBtn');
+            const result = document.getElementById('result');
+            
+            if (!email) {
+                showResult('Please enter an email address', 'error');
+                return;
+            }
+            
+            // Disable button and show loading
+            button.disabled = true;
+            button.textContent = '📤 Sending...';
+            showResult('Sending test email...', 'loading');
+            
+            try {
+                const response = await fetch('http://localhost:8080/api/test/email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+                
+                const data = await response.text();
+                
+                if (response.ok) {
+                    showResult(`✅ ${data}`, 'success');
+                } else {
+                    showResult(`❌ Error: ${data}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ Connection Error: ${error.message}`, 'error');
+            } finally {
+                // Re-enable button
+                button.disabled = false;
+                button.textContent = '📧 Send Test Email';
+            }
+        }
+        
+        function showResult(message, type) {
+            const result = document.getElementById('result');
+            result.textContent = message;
+            result.className = `result ${type}`;
+            result.style.display = 'block';
+        }
+
+        // Add keyboard shortcut
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && document.activeElement.id === 'email') {
+                testEmail();
+            }
+        });
+    </script>
+</body>
+</html> 

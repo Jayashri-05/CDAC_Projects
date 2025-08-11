@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Debug Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-section h3 {
+            color: #333;
+            margin-top: 0;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .pet-item {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .pet-image {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .debug-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐾 Gallery Debug Test</h1>
+        <p>This page helps debug why pets aren't showing in the gallery.</p>
+
+        <div class="test-section">
+            <h3>1. Test All Pets Endpoint</h3>
+            <button onclick="testAllPets()">Get All Pets</button>
+            <div id="allPetsResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. Test Available Pets Endpoint</h3>
+            <button onclick="testAvailablePets()">Get Available Pets</button>
+            <div id="availablePetsResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Test Pet Images</h3>
+            <button onclick="testPetImages()">Test Image URLs</button>
+            <div id="petImagesResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>4. Gallery Data Analysis</h3>
+            <button onclick="analyzeGalleryData()">Analyze Gallery Data</button>
+            <div id="galleryAnalysisResult" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+
+        async function makeRequest(url, method = 'GET') {
+            try {
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error('Request failed:', error);
+                throw error;
+            }
+        }
+
+        async function testAllPets() {
+            const resultDiv = document.getElementById('allPetsResult');
+            resultDiv.innerHTML = 'Loading...';
+            
+            try {
+                const pets = await makeRequest(`${API_BASE}/pets`);
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `✅ Success! Found ${pets.length} pets:\n\n${JSON.stringify(pets, null, 2)}`;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ Error: ${error.message}`;
+            }
+        }
+
+        async function testAvailablePets() {
+            const resultDiv = document.getElementById('availablePetsResult');
+            resultDiv.innerHTML = 'Loading...';
+            
+            try {
+                const pets = await makeRequest(`${API_BASE}/pets/available`);
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `✅ Success! Found ${pets.length} available pets:\n\n${JSON.stringify(pets, null, 2)}`;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ Error: ${error.message}`;
+            }
+        }
+
+        async function testPetImages() {
+            const resultDiv = document.getElementById('petImagesResult');
+            resultDiv.innerHTML = 'Loading...';
+            
+            try {
+                const pets = await makeRequest(`${API_BASE}/pets/available`);
+                let html = `<h4>Testing ${pets.length} pets:</h4>`;
+                
+                for (const pet of pets) {
+                    html += `<div class="pet-item">`;
+                    html += `<h4>${pet.petName} (${pet.species})</h4>`;
+                    html += `<p><strong>Photo URLs:</strong> ${pet.photoUrls || 'None'}</p>`;
+                    
+                    if (pet.photoUrls) {
+                        const photoUrl = `http://localhost:8080/api/pets/images/${pet.photoUrls.split(',')[0]}`;
+                        html += `<p><strong>Image URL:</strong> ${photoUrl}</p>`;
+                        html += `<img src="${photoUrl}" alt="${pet.petName}" class="pet-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />`;
+                        html += `<p style="display:none; color:red;">❌ Image failed to load</p>`;
+                    } else {
+                        html += `<p style="color:orange;">⚠️ No photo URLs found</p>`;
+                    }
+                    
+                    html += `<div class="debug-info">`;
+                    html += `<strong>ID:</strong> ${pet.id} | `;
+                    html += `<strong>Adopted:</strong> ${pet.adopted} | `;
+                    html += `<strong>Shelter:</strong> ${pet.shelter ? pet.shelter.shelterName : 'None'}`;
+                    html += `</div>`;
+                    html += `</div>`;
+                }
+                
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ Error: ${error.message}`;
+            }
+        }
+
+        async function analyzeGalleryData() {
+            const resultDiv = document.getElementById('galleryAnalysisResult');
+            resultDiv.innerHTML = 'Loading...';
+            
+            try {
+                const pets = await makeRequest(`${API_BASE}/pets/available`);
+                let analysis = `📊 Gallery Data Analysis\n\n`;
+                analysis += `Total available pets: ${pets.length}\n\n`;
+                
+                if (pets.length === 0) {
+                    analysis += `❌ No pets found! Possible issues:\n`;
+                    analysis += `- All pets are marked as adopted\n`;
+                    analysis += `- Database is empty\n`;
+                    analysis += `- API endpoint is not working\n`;
+                } else {
+                    analysis += `✅ Pets found:\n`;
+                    
+                    const speciesCount = {};
+                    const withPhotos = pets.filter(p => p.photoUrls && p.photoUrls.trim() !== '');
+                    const withoutPhotos = pets.filter(p => !p.photoUrls || p.photoUrls.trim() === '');
+                    
+                    pets.forEach(pet => {
+                        speciesCount[pet.species] = (speciesCount[pet.species] || 0) + 1;
+                    });
+                    
+                    analysis += `\n📸 Photos:\n`;
+                    analysis += `- Pets with photos: ${withPhotos.length}\n`;
+                    analysis += `- Pets without photos: ${withoutPhotos.length}\n`;
+                    
+                    analysis += `\n🐾 Species breakdown:\n`;
+                    Object.entries(speciesCount).forEach(([species, count]) => {
+                        analysis += `- ${species}: ${count}\n`;
+                    });
+                    
+                    analysis += `\n🔍 Detailed pet info:\n`;
+                    pets.forEach(pet => {
+                        analysis += `\n${pet.petName} (${pet.species}):\n`;
+                        analysis += `  - ID: ${pet.id}\n`;
+                        analysis += `  - Adopted: ${pet.adopted}\n`;
+                        analysis += `  - Photo URLs: ${pet.photoUrls || 'None'}\n`;
+                        analysis += `  - Shelter: ${pet.shelter ? pet.shelter.shelterName : 'None'}\n`;
+                    });
+                }
+                
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = analysis;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html> 
